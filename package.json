@@ -1,17 +1,17 @@
 {
-  "name": "linkding-injector",
-  "version": "1.3.5",
-  "description": "Injects search results from the linkding bookmark service into search pages like google and duckduckgo",
+  "name": "dokuwiki-injector",
+  "version": "0.1.0",
+  "description": "Injects search results from the DokuWiki self-hosted wiki into search pages like Google and DuckDuckGo",
   "license": "MIT",
-  "author": "Jakob Essbüchl",
+  "author": "Piet JM Swinkels",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fivefold/linkding-injector.git"
+    "url": "git+https://github.com/wetenschaap/dokuwiki-injector.git"
   },
   "bugs": {
-    "url": "https://github.com/fivefold/linkding-injector/issues"
+    "url": "https://github.com//wetenschaap/dokuwiki-injector/issues"
   },
-  "homepage": "https://github.com/fivefold/linkding-injector#readme",
+  "homepage": "https://github.com//wetenschaap/dokuwiki-injector#readme",
   "scripts": {
     "build": "rollup -c && sass scss/theme.scss build/searchInjection.css",
     "dev": "rollup -c -w && sass scss/theme.scss build/searchInjection.css"
@@ -22,6 +22,7 @@
     "@rollup/plugin-terser": "^0.4.4",
     "rollup": "^4.40.2",
     "rollup-plugin-svelte": "^7.2.2",
+    "sass": "^1.89.2",
     "spectre.css": "^0.5.9",
     "svelte": "^4.2.19"
   },

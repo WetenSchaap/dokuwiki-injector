@@ -35,6 +35,6 @@ export function saveConfiguration(config) {
 }
 
 export async function isConfigurationComplete() {
-  const { baseUrl, token } = await getConfiguration();
-  return !!baseUrl && !!token;
+  const { baseUrl, token, resultNum } = await getConfiguration();
+  return !!baseUrl && !!token && !!resultNum;
 }

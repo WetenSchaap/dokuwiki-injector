@@ -1,7 +1,6 @@
 import { getBrowser, openOptions } from "./browser";
 import { getConfiguration, isConfigurationComplete } from "./configuration";
-
-import { LinkdingApi } from "./linkding";
+import { DokuWikiApi } from "./dokuwiki";
 
 const browser = getBrowser();
 
@@ -11,7 +10,7 @@ let portFromCS;
 function connected(p) {
   portFromCS = p;
 
-  // When the content script sends the search term, search on linkding and
+  // When the content script sends the search term, search on dokuwiki and
   // return results
   portFromCS.onMessage.addListener(async function (m) {
     if (m.action == "openOptions") {
@@ -21,27 +20,26 @@ function connected(p) {
     } else if ((await isConfigurationComplete()) == false) {
       portFromCS.postMessage({
         message:
-          "Connection to your linkding instance is not configured yet! " +
+          "Connection to your dokuwiki instance is not configured yet! " +
           "Please configure the extension in the <a class='openOptions'>options</a>.",
       });
     } else {
       let config = await getConfiguration();
 
-      const api = new LinkdingApi(config);
+      const api = new DokuWikiApi(config);
 
-      // Configuration is complete, execute a search on linkding
+      // Configuration is complete, execute a search on dokuWiki
       api
-        .search(m.searchTerm, { limit: config.resultNum })
+        .search(m.searchTerm)
         .then((results) => {
-          const bookmarkSuggestions = results.map((bookmark) => ({
-            url: bookmark.url,
-            title: bookmark.title || bookmark.website_title || bookmark.url,
-            description: bookmark.description || bookmark.website_description,
-            tags: bookmark.tag_names,
-            date: bookmark.date_modified,
+          const dwpageResults = results.map((dwpage) => ({
+            url: dwpage.url,
+            title: dwpage.title,
+            snippet: dwpage.snippet,
+            id: dwpage.id
           }));
           portFromCS.postMessage({
-            results: bookmarkSuggestions,
+            results: dwpageResults,
             config: config,
           });
         })

@@ -1,6 +1,6 @@
 <script>
   import { getConfiguration, saveConfiguration } from "./configuration";
-  import { LinkdingApi } from "./linkding";
+  import { DokuWikiApi } from "./dokuwiki";
 
   let baseUrl;
   let token;
@@ -45,7 +45,9 @@
       themeQwant,
     };
 
-    const testResult = await new LinkdingApi(config).testConnection(config);
+    const testResult = await new DokuWikiApi(config).testConnection(config);
+
+    console.debug("Test connection result:", testResult);
 
     if (testResult) {
       await saveConfiguration(config);
@@ -61,10 +63,8 @@
 <h6>Configuration</h6>
 <div class="divider" />
 <p>
-  This is a companion extension for the <a
-    href="https://github.com/sissbruecker/linkding">linkding</a
-  > bookmark service. Before you can start using it you have to configure some basic
-  settings, so that the extension can communicate with your linkding installation.
+  This is a companion extension for a dokuwiki install. Before you can start using it you have to configure some basic
+  settings, so that the extension can communicate with your dokuwiki installation.
 </p>
 <form class="form" on:submit|preventDefault={handleSubmit}>
   <div class="form-group">
@@ -75,28 +75,26 @@
       class="form-input"
       type="text"
       id="input-base-url"
-      placeholder="https://linkding.mydomain.com"
+      placeholder="https://wiki.mydomain.com"
       bind:value={baseUrl}
     />
     <div class="form-input-hint">
-      The base URL of your linkding installation, <b>without</b> the
-      <samp>/bookmark</samp> path or a trailing slash
+      The base URL of your dokuwiki installation, <b>including</b> http(s)://, and <b>without</b> a trailing slash
     </div>
   </div>
   <div class="form-group">
     <label class="form-label" for="input-token"
-      >API Authentication Token <span class="text-error">*</span></label
+      >API Token <span class="text-error">*</span></label
     >
     <input
       class="form-input"
       type="password"
       id="input-token"
-      placeholder="Token"
+      placeholder="API Token"
       bind:value={token}
     />
     <div class="form-input-hint">
-      Used to authenticate against the linkding API. You can find this on your
-      linkding settings page.
+      Enter your dokuwiki API token. You can generate a token in your dokuwiki user profile.
     </div>
   </div>
   <div class="form-group">
@@ -276,7 +274,7 @@
     <button
       type="submit"
       class="btn btn-primary ml-2"
-      disabled={!(baseUrl && token)}
+      disabled={!(baseUrl && token) || isSuccess}
     >
       Save
     </button>

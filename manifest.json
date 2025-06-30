@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "linkding injector",
-  "version": "1.3.5",
-  "description": "Injects search results from the linkding bookmark service into search pages like google and duckduckgo",
-  "homepage_url": "https://github.com/fivefold/linkding-injector.git",
+  "name": "dokuwiki injector",
+  "version": "0.1.0",
+  "description": "Injects search results from a dokuwiki instance into search pages like google and duckduckgo ",
+  "homepage_url": "https://github.com/wetenschaap/dokuwiki-injector.git",
 
   "icons": {
     "19": "icons/logo_19.png",

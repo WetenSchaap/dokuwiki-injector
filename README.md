@@ -1,11 +1,12 @@
 ![logo](/icons/logo_full.svg)
 
-Community browser extension for the self-hosted [linkding](https://github.com/sissbruecker/linkding) bookmark service.
+Community browser extension for a [dokuwiki](https://www.dokuwiki.org/dokuwiki) server.
 
-***_Ever created bookmarks, only to forget about them later? Don't regularly search within your bookmarks? This extension is designed to help with this kind of problem._***
+***_Do you forget the things that you have written in your wiki? Find yourself searhing solutions to problems you already found the answer to? This extension may be for you!_***
 
 **Features**
-- When searching on a search engine the search term is also sent to your linkding instance and results are added in a new box in the sidebar right to the search engine results.
+
+- When searching on a search engine the search term is also sent to your dokuwiki instance and results are added in a new box in the sidebar right to the search engine results.
 - Supports the following search engines:
   - [google](https://www.google.com/)
   - [duckduckgo](https://duckduckgo.com/)
@@ -21,9 +22,9 @@ _\* experimental, please read [this](https://github.com/Fivefold/linkding-inject
 
 **Usage**
 
-After installation the extension needs to be configured and connected to your linkding instance. Either open the extension options in the browser extension manager or follow the link in the new linkding injector box on the search page of google or duckduckgo.
+After installation the extension needs to be configured and connected to your dokuwiki instance. Either open the extension options in the browser extension manager or follow the link in the new linkding injector box on your search engine.
 
-Once the extension is properly configured linkding search results will show in the right sidebar. If there are no search results nothing will appear.
+Once the extension is properly configured dokuwiki search results will show in the right sidebar. If there are no search results nothing will appear.
 
 **Screenshots**
 
@@ -32,11 +33,7 @@ Once the extension is properly configured linkding search results will show in t
 
 ## Installation
 
-Firefox: [Mozilla Addon Store](https://addons.mozilla.org/en-US/firefox/addon/linkding-injector/)
-
-Chrome: [Chrome Web Store](https://chrome.google.com/webstore/detail/linkding-injector/odjhldcomjlmfbdfeopdkeinpkmjibok)
-
-## Manual installation
+Currently only manually until I have tested this in my day-to-day work for a few days/weeks.
 
 ### Firefox
 
@@ -81,4 +78,7 @@ Chrome switched over to Manifest V3. Same build instructions as above apply, but
 
 ## Acknowledgements
 
-This extension reuses and adapts code from the [official linkding extension](https://github.com/sissbruecker/linkding-extension).
+This extension is a fork of [Linkding Injector](https://github.com/Fivefold/linkding-injector/). I adapted it to work with Dokuwiki instead of Linkding. I kept the code that inserts search results identical as much as possible, and just adapted the API calls to get Dokuwiki results. I really don't know that much about browser extensions or javascript - so I will rely on linkding injector heavily to keep things working properly.
+
+I thought this would be useful for myself, and so I tried some stuff and it worked out! It does mean this extension will rely on the work on the linkding injector heavily for continued function as search engines formatting, etc., are updated.
+

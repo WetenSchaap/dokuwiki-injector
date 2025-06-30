@@ -7,7 +7,7 @@ function getBrowser() {
 }
 
 /* Sanitise input to prevent unwanted injection of html or even javascript 
-  through linkding search results, e.g. in the bookmark title or description 
+  through dokuwiki search results, e.g. in the bookmark title or description 
 */
 function escapeHTML(str) {
   let p = document.createElement("p");
@@ -32,7 +32,7 @@ if (document.location.hostname.match(/duckduckgo\.com/)) {
 } else if (document.location.hostname.match(/qwant\.com/)) {
   searchEngine = "qwant";
 } else {
-  console.debug("Linkding-Injector extension: unknown search engine.");
+  console.debug("Dokuwiki-Injector extension: unknown search engine.");
 }
 
 // CSS selectors for finding the sidebar to later inject into
@@ -60,7 +60,7 @@ port.onMessage.addListener(function (m) {
       <div id="navbar">
         <a id="ld-logo">  
           <img src=${browser.runtime.getURL("icons/logo.svg")} class="setup" />
-          <h1>linkding injector</h1>
+          <h1>Dokuwiki injector</h1>
         </a>
         <a id="ld-options" class="openOptions">
           <img class="ld-settings" src=${browser.runtime.getURL(
@@ -99,17 +99,15 @@ port.onMessage.addListener(function (m) {
       themeClass = theme; // "dark" for dark theme, "light" for light theme
     }
 
-    // URL of the configured linkding instance (including search term)
-    let linkdingUrl =
-      m.config.baseUrl +
-      (searchTerm.length > 0 ? `/bookmarks?q=${searchTerm}` : "/");
+    // URL of the configured dokuwiki instance (including search term)
+    let dokuwikiUrl = m.config.baseUrl;
 
     htmlString += `
     <div id="bookmark-list-container" class="${searchEngine} ${themeClass}">
       <div id="navbar">
-        <a id="ld-logo" href="${linkdingUrl}">  
+        <a id="ld-logo" href="${dokuwikiUrl}">  
           <img src=${browser.runtime.getURL("icons/logo.svg")} />
-          <h1>linkding injector</h1>
+          <h1>dokuwiki injector</h1>
         </a>
         <div id="results_amount">
           Found <span>${m.results.length}</span> ${
@@ -138,26 +136,15 @@ port.onMessage.addListener(function (m) {
             >
           </div>
           <div class="description ${themeClass}">
-            <span class="tags">
-              ${bookmark.tags
-                .map((tag) => {
-                  return "<a>#" + escapeHTML(tag) + "</a>";
-                })
-                .join(" ")}
-              </a>
-            </span>
-    
-            ${bookmark.tags.length > 0 ? "|" : ""}
-    
             <span>
-              ${escapeHTML(bookmark.description)}
+              ${bookmark.id || ""}
             </span>
           </div>
-        </li>`;
+        </li>`; // unfortunately, we cannot really use the snippet here because it is will contain both HTML and dokuwiki markup, which is probably a pain to display correctly
     });
     htmlString += `</ul></div>`;
   } else {
-    console.error("linkding injector: no message and no search results");
+    console.error("dokuwiki injector: no message and no search results");
     return;
   }
 
