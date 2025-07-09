@@ -70,16 +70,25 @@ export class DokuWikiApi {
       }
   }
 
-
   // Test connection by getting version info
-  async testConnection() { // TODO: Expand so we can distinguish between connection issue and API not activated in dokuwiki 
+  async testConnection() { // TODO: Expand so we can distinguish between connection issue and API not activated in dokuwiki?
     try {
-      const response = await this.jsonRpcCall("core.getAPIVersion");
-      if (response && response.ok) { // all good
-        console.debug("DokuWiki API version:", response.result);
-        return true;
-      } else {                      // some problem with the server
-        console.error("Failed to get DokuWiki API version:", response.statusText);
+      const versionResponse = await this.jsonRpcCall("core.getAPIVersion");
+      if (versionResponse && versionResponse.ok) { // all good
+        const body = await versionResponse.text();
+        console.debug("DokuWiki API version:", body);
+        // now: version is always returned, even if the user is not allowed api access in dokuwiki settings, so check whoAmI to make sure we can access the API
+        const whoAmIResponse = await this.jsonRpcCall("core.whoAmI");
+        if (!whoAmIResponse.ok) {
+          console.error("DokuWiki API access is allowed, but user does not have correct permissions.");
+          return false;
+        } else {
+          const userinfo = await whoAmIResponse.text();
+          console.debug("DokuWiki API access is allowed, with userinfo:", userinfo);
+          return true;
+        }
+      } else {                      // some problem with the server: either adress is wrong, or the API is not activated in dokuwiki
+        console.error("Failed to get DokuWiki API version:", versionResponse.statusText);
         return false;
       }
     } catch (error) {               // some problem with the connection probably?
