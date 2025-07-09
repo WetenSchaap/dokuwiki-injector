@@ -22,9 +22,17 @@ _\* experimental, please read [this](https://github.com/Fivefold/linkding-inject
 
 **Usage**
 
-After installation the extension needs to be configured and connected to your dokuwiki instance. Either open the extension options in the browser extension manager or follow the link in the new linkding injector box on your search engine.
+Before you can use this extension, you need to configure your dokuwiki instance (or ask your admin to do it for you): in the configuration settings, under `Authentication`: first enable `remote`, and second `remoteuser` needs to set to either your username (say `wetenschaap`) or the user group you want to use (like `@user`).
 
-Once the extension is properly configured dokuwiki search results will show in the right sidebar. If there are no search results nothing will appear.
+![dokuwiki config](/docs/dokuwiki-settings.png)
+
+When you've done that, you need to configure the extension. Either open the extension options in the browser extension manager or follow the link in the new Dokuwiki injector box on your search engine.
+
+To get a dokuwiki auth token, go to Update Prfile in Dokuwiki, and copy the token given there.
+
+![dokuwiki auth](/docs/dokuwiki-authtoken.png)
+
+Once the extension is properly configured Dokuwiki search results will show in the right sidebar. If there are no search results nothing will appear.
 
 **Screenshots**
 
