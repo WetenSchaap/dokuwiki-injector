@@ -50,13 +50,13 @@ export class DokuWikiApi {
         console.debug("DokuWiki search results:", data); // Log the search results for debugging
         try {
             const mappedResults = data.result.map((page) => ({
-            id: page.id,
-            url: page.url,
-            title: page.title || page.id.replace(/_/g, " "),
-            snippet: page.snippet,
-            revision: page.revision,
-            size: page.size,
-            permission: page.permission
+              id: page.id,
+              url: `${this.configuration.baseUrl}/doku.php?id=${encodeURIComponent(page.id)}`,
+              title: page.title || page.id.replace(/_/g, " "),
+              snippet: page.snippet,
+              revision: page.revision,
+              size: page.size,
+              permission: page.permission
             }));
             // If there are fewer results than resultNum, just return all of them, otherwise slice the array to the desired length
             return mappedResults.slice(0, Math.min(resultNum, mappedResults.length));
