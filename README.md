@@ -41,7 +41,7 @@ Once the extension is properly configured Dokuwiki search results will show in t
 
 ## Installation
 
-Currently, only manually until I have tested this in my day-to-day work for a few days/weeks.
+Install as a [Firefox Add-on](https://addons.mozilla.org/firefox/addon/dokuwiki-injector/) or a [Chrome Extension](https://chromewebstore.google.com/detail/dokuwiki-injector/hilcoeefmimgndbcnemfniadjcggnllb). You can also build it yourself:
 
 ### Firefox
 
@@ -88,3 +88,5 @@ Chrome switched over to Manifest V3. Same build instructions as above apply, but
 This extension is a fork of [Linkding Injector](https://github.com/Fivefold/linkding-injector/). I adapted it to work with Dokuwiki instead of Linkding. The code that inserts search results was kept the same whenever possible; the API calls were adapted to get Dokuwiki results. I really don't know that much about browser extensions or Javascript - so I will rely on linkding injector heavily to keep things working properly.
 
 I thought this would be useful for myself, and so I tried some stuff and it worked out! It does mean this extension will rely on the work on the Linkding injector heavily for continued function as search engines formatting, etc., are updated.
+
+For more information about this browser extension, check out [this post](https://swnkls.nl/en/posts/dwinj).
