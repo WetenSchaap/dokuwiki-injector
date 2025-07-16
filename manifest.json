@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "dokuwiki injector",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Injects search results from a dokuwiki instance into search pages like google and duckduckgo ",
   "homepage_url": "https://github.com/wetenschaap/dokuwiki-injector.git",
 
