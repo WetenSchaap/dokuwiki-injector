@@ -1,6 +1,6 @@
 {
   "name": "dokuwiki-injector",
-  "version": "0.1.0",
+  "version": "1.0.2",
   "description": "Injects search results from the DokuWiki self-hosted wiki into search pages like Google and DuckDuckGo",
   "license": "MIT",
   "author": "Piet JM Swinkels",
