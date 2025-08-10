@@ -68,7 +68,7 @@
     <li>Configure some basic settings here, so that the extension can communicate with your dokuwiki installation.</li>
     <li>Enable some settings in Dokuwiki, <a href="https://github.com/WetenSchaap/dokuwiki-injector/blob/master/docs/usage.md" target="_blank" rel="noopener noreferrer">see here</a>.</li>
   </ol>
-</p>
+<!-- </p> -->
 <form class="form" on:submit|preventDefault={handleSubmit}>
   <div class="form-group">
     <label class="form-label" for="input-base-url"
