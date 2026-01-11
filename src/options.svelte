@@ -12,8 +12,10 @@
   let themeSearx;
   let themeKagi;
   let themeQwant;
-  let isSuccess;
-  let isError;
+  let isSuccess = false;
+  let isError = false;
+  let errorMessage = "";
+  let errorStatus = null;
 
   async function init() {
     const config = await getConfiguration();
@@ -47,13 +49,17 @@
 
     const testResult = await new LinkdingApi(config).testConnection(config);
 
-    if (testResult) {
+    if (testResult.success) {
       await saveConfiguration(config);
       isError = false;
       isSuccess = true;
+      errorMessage = "";
+      errorStatus = null;
     } else {
       isSuccess = false;
       isError = true;
+      errorMessage = testResult.message;
+      errorStatus = testResult.status;
     }
   }
 </script>
@@ -118,7 +124,7 @@
   <div class="accordion">
     <input type="checkbox" id="accordion-1" name="accordion-checkbox" hidden />
     <label class="accordion-header" for="accordion-1">
-      <i class="icon icon-arrow-right mr-1" />
+      <i class="icon-arrow-right mr-1 icon" />
       Advanced Settings
     </label>
     <div class="accordion-body">
@@ -145,8 +151,8 @@
       </div>
       <div class="form-group p-relative clearfix">
         <div class="form-label">Theme of injection box</div>
-        <div class="form-label float-left">google</div>
-        <label class="form-radio form-inline float-right">
+        <div class="float-left form-label">google</div>
+        <label class="form-inline float-right form-radio">
           <input
             type="radio"
             id="google-light"
@@ -155,7 +161,7 @@
           />
           <i class="form-icon" />light
         </label>
-        <label class="form-radio form-inline float-right">
+        <label class="form-inline float-right form-radio">
           <input
             type="radio"
             id="google-dark"
@@ -164,7 +170,7 @@
           />
           <i class="form-icon" />dark
         </label>
-        <label class="form-radio form-inline float-right">
+        <label class="form-inline float-right form-radio">
           <input
             type="radio"
             id="google-auto"
@@ -175,76 +181,76 @@
         </label>
       </div>
       <div class="form-group p-relative clearfix">
-        <div class="form-label float-left">DuckDuckGo</div>
-        <label class="form-radio form-inline float-right">
+        <div class="float-left form-label">DuckDuckGo</div>
+        <label class="form-inline float-right form-radio">
           <input type="radio" bind:group={themeDuckduckgo} value="light" />
           <i class="form-icon" />light
         </label>
-        <label class="form-radio form-inline float-right">
+        <label class="form-inline float-right form-radio">
           <input type="radio" bind:group={themeDuckduckgo} value="dark" />
           <i class="form-icon" />dark
         </label>
-        <label class="form-radio form-inline float-right">
+        <label class="form-inline float-right form-radio">
           <input type="radio" bind:group={themeDuckduckgo} value="auto" />
           <i class="form-icon" />auto (default)
         </label>
       </div>
       <div class="form-group p-relative clearfix">
-        <div class="form-label float-left">Brave Search†</div>
-        <label class="form-radio form-inline float-right">
+        <div class="float-left form-label">Brave Search†</div>
+        <label class="form-inline float-right form-radio">
           <input type="radio" bind:group={themeBrave} value="light" />
           <i class="form-icon" />light
         </label>
-        <label class="form-radio form-inline float-right">
+        <label class="form-inline float-right form-radio">
           <input type="radio" bind:group={themeBrave} value="dark" />
           <i class="form-icon" />dark
         </label>
-        <label class="form-radio form-inline float-right">
+        <label class="form-inline float-right form-radio">
           <input type="radio" bind:group={themeBrave} value="auto" />
           <i class="form-icon" />auto (default)
         </label>
       </div>
       <div class="form-group p-relative clearfix">
-        <div class="form-label float-left">SearX/SearXNG†</div>
-        <label class="form-radio form-inline float-right">
+        <div class="float-left form-label">SearX/SearXNG†</div>
+        <label class="form-inline float-right form-radio">
           <input type="radio" bind:group={themeSearx} value="light" />
           <i class="form-icon" />light
         </label>
-        <label class="form-radio form-inline float-right">
+        <label class="form-inline float-right form-radio">
           <input type="radio" bind:group={themeSearx} value="dark" />
           <i class="form-icon" />dark
         </label>
-        <label class="form-radio form-inline float-right">
+        <label class="form-inline float-right form-radio">
           <input type="radio" bind:group={themeSearx} value="auto" />
           <i class="form-icon" />auto (default)
         </label>
       </div>
       <div class="form-group p-relative clearfix">
-        <div class="form-label float-left">Kagi Search</div>
-        <label class="form-radio form-inline float-right">
+        <div class="float-left form-label">Kagi Search</div>
+        <label class="form-inline float-right form-radio">
           <input type="radio" bind:group={themeKagi} value="light" />
           <i class="form-icon" />light
         </label>
-        <label class="form-radio form-inline float-right">
+        <label class="form-inline float-right form-radio">
           <input type="radio" bind:group={themeKagi} value="dark" />
           <i class="form-icon" />dark
         </label>
-        <label class="form-radio form-inline float-right">
+        <label class="form-inline float-right form-radio">
           <input type="radio" bind:group={themeKagi} value="auto" />
           <i class="form-icon" />auto (default)
         </label>
       </div>
       <div class="form-group p-relative clearfix">
-        <div class="form-label float-left">Qwant</div>
-        <label class="form-radio form-inline float-right">
+        <div class="float-left form-label">Qwant</div>
+        <label class="form-inline float-right form-radio">
           <input type="radio" bind:group={themeQwant} value="light" />
           <i class="form-icon" />light
         </label>
-        <label class="form-radio form-inline float-right">
+        <label class="form-inline float-right form-radio">
           <input type="radio" bind:group={themeQwant} value="dark" />
           <i class="form-icon" />dark
         </label>
-        <label class="form-radio form-inline float-right">
+        <label class="form-inline float-right form-radio">
           <input type="radio" bind:group={themeQwant} value="auto" />
           <i class="form-icon" />auto (default)
         </label>
@@ -260,22 +266,33 @@
 
   <div class="button-row">
     {#if isSuccess}
-      <div class="form-group has-success mr-2">
-        <span class="form-input-hint"
-          ><i class="icon icon-check" /> Connection successful
-        </span>
-      </div>
-    {/if}
-    {#if isError}
-      <div class="form-group has-error mr-2">
+      <div class="form-group mr-2 has-success">
         <span class="form-input-hint">
-          <i class="icon icon-cross" /> Connection failed
+          <i class="icon icon-check" /> Connection successful
         </span>
       </div>
+    {:else if isError}
+      <div class="form-group mr-2 has-error">
+        <span class="form-input-hint">
+          <div>
+            <i class="icon icon-cross" /> Connection failed
+          </div>
+          <div>
+            <b>Status Code:</b>
+            {errorStatus} <br />
+          </div>
+          <div>
+            <b>Error:</b>
+            {errorMessage}
+          </div>
+        </span>
+      </div>
+    {:else}
+      <div></div>
     {/if}
     <button
       type="submit"
-      class="btn btn-primary ml-2"
+      class="ml-2 btn btn-primary"
       disabled={!(baseUrl && token)}
     >
       Save
@@ -286,8 +303,9 @@
 <style>
   .button-row {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: baseline;
+    justify-content: space-between;
   }
   .button-row button {
     padding-left: 32px;
