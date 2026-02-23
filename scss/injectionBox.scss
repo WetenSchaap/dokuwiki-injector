@@ -1,19 +1,21 @@
+@use "variables";
+
 div#bookmark-list-container {
   padding: 20px 22px;
   margin-bottom: 20px;
   border-radius: 8px;
   background-color: #fff;
-  color: $primary-color;
+  color: variables.$primary-color;
 
   // duckduckgo-specific styles
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.06);
-  border: 1px solid $duckduckgo-border-color;
+  border: 1px solid variables.$duckduckgo-border-color;
 
   a {
-    color: $primary-color;
+    color: variables.$primary-color;
 
     :hover {
-      color: $link-color-dark;
+      color: variables.$link-color-dark;
       cursor: pointer;
     }
   }
@@ -77,7 +79,7 @@ div#bookmark-list-container {
 
   #error-message a,
   #error-message a:visited {
-    color: $alternative-color !important;
+    color: variables.$alternative-color !important;
     cursor: pointer;
   }
 
@@ -112,52 +114,52 @@ div#bookmark-list-container {
 
     #results_amount {
       span {
-        color: $alternative-color-light-theme;
+        color: variables.$alternative-color-light-theme;
       }
     }
   }
 
   // --------- dark styling start ---------
   @mixin dark-styling {
-    background-color: $duckduckgo-bg;
+    background-color: variables.$duckduckgo-bg;
     border: none;
-    color: $primary-color-dark;
+    color: variables.$primary-color-dark;
     
     a {
-      color: $primary-color-dark;
+      color: variables.$primary-color-dark;
     }
     
     #navbar #results_amount span {
-      color: $alternative-color !important;
+      color: variables.$alternative-color !important;
     }
     
     .tags a {
-      color: $alternative-color;
+      color: variables.$alternative-color;
     }
     
     
     &.google:not(.light) {
-      background-color: $google-bg;
-      border: 1px solid $google-border-color-dark;
+      background-color: variables.$google-bg;
+      border: 1px solid variables.$google-border-color-dark;
     }
 
     &.brave:not(.light) {
-      background-color: $brave-bg;
+      background-color: variables.$brave-bg;
     }
 
     &.searx:not(.light) {
-      background-color: $searx-bg-dark;
-      border: 1px solid $searx-border-color-dark;
+      background-color: variables.$searx-bg-dark;
+      border: 1px solid variables.$searx-border-color-dark;
     }
     
     &.kagi:not(.light) {
-      background-color: $kagi-bg-dark;
-      border: 1px solid $kagi-border-color-dark;
+      background-color: variables.$kagi-bg-dark;
+      border: 1px solid variables.$kagi-border-color-dark;
     }
 
     &.qwant:not(.light) {
-      background-color: $qwant-bg-dark;
-      border: 1px solid $qwant-border-color-dark;
+      background-color: variables.$qwant-bg-dark;
+      border: 1px solid variables.$qwant-border-color-dark;
     }
   }
 

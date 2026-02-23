@@ -1,3 +1,5 @@
+@use "variables";
+
 ul#bookmark-list {
   list-style: none;
   margin: 0;
@@ -8,7 +10,7 @@ ul#bookmark-list {
   }
 
   .description {
-    color: $gray-color;
+    color: variables.$gray-color;
 
     // @media (prefers-color-scheme: dark) {
     //   color: $gray-color-dark
@@ -16,7 +18,7 @@ ul#bookmark-list {
 
     a,
     a:visited:hover {
-      color: $alternative-color;
+      color: variables.$alternative-color;
     }
   }
 
@@ -30,7 +32,7 @@ ul#bookmark-list {
   body[data-theme=dark] &:not(.light)             // Qwant
     {
       .description {
-        color: $gray-color-dark;
+        color: variables.$gray-color-dark;
       }
     }
   }

@@ -10,3 +10,8 @@
 
 - Upstream fix for Kagi
 - Added link to instructions on the configuration page.
+
+## v1.0.3 (23/02/2026)
+
+- Change to extension manifest v3, simplifying cross-browser development
+- Sync with linkding connector v1.3.7
