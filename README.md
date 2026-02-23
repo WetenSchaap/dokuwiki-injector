@@ -4,7 +4,7 @@ Community browser extension for a [dokuwiki](https://www.dokuwiki.org/dokuwiki) 
 
 ***Do you forget the things that you have written in your wiki? Find yourself searching solutions to problems you already found the answer to? This extension may be for you!***
 
-**Features**
+## Features
 
 - When searching on a search engine the search term is also sent to your Dokuwiki instance and results are added in a new box in the sidebar right to the search engine results.
 - Supports the following search engines:
@@ -16,11 +16,11 @@ Community browser extension for a [dokuwiki](https://www.dokuwiki.org/dokuwiki) 
   - [Qwant](https://www.qwant.com/)
 - Automatic light or dark theme detection
 
-Works with: Firefox, Chrome
+Tested with: Firefox, Chrome
 
 _\* experimental, please read [this](https://github.com/Fivefold/linkding-injector/wiki/SearX-SearXNG-support) if you have problems_
 
-**Usage**
+## Usage
 
 Before you can use this extension, you need to configure your dokuwiki instance (or ask your admin to do it for you): in the configuration settings, under `Authentication`: first enable `remote`, and second `remoteuser` needs to set to either your username (say `wetenschaap`) or the user group you want to use (like `@user`).
 
@@ -34,7 +34,7 @@ To get a Dokuwiki auth token, go to *Update Profile* in Dokuwiki, and copy the t
 
 Once the extension is properly configured Dokuwiki search results will show in the right sidebar. If there are no search results nothing will appear.
 
-**Screenshots**
+## Screenshots
 
 ![kagi](/docs/kagi.png "Kagi")
 ![google](/docs/google.png "Google")
@@ -79,10 +79,6 @@ After the build the root directory contains the complete, unpackaged extension. 
 The packaged extension can be found in the `web-ext-artifacts` folder.
 
 For developing you might prefer using `npm run dev` to create an unpackaged development build. This won't package the extension and won't minify the code but is faster and makes debugging in the browser easier.
-
-### Building for Chrome-based browsers
-
-Chrome switched over to Manifest V3. Same build instructions as above apply, but before building you need to check out the `chrome_manifest_v3` branch. The only relevant difference in that branch is the [manifest.json](https://github.com/Fivefold/linkding-injector/blob/master/manifest.json).
 
 ## Acknowledgements
 

@@ -1,9 +1,18 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "dokuwiki injector",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Injects search results from a dokuwiki instance into search pages like google and duckduckgo ",
   "homepage_url": "https://github.com/wetenschaap/dokuwiki-injector.git",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{19561335-5a63-4b4e-8182-1eced17f9b47}",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+          "required": ["searchTerms"]
+        }
+    }
+  },
 
   "icons": {
     "19": "icons/logo_19.png",
@@ -14,6 +23,7 @@
   },
 
   "background": {
+    "service_worker": "build/background.js",
     "scripts": ["build/background.js"]
   },
 
@@ -242,10 +252,22 @@
   ],
 
   "options_ui": {
-    "page": "options/index.html"
+    "page": "options/index.html",
+    "open_in_tab": false
   },
 
-  "web_accessible_resources": ["icons/*.png", "icons/*.svg"],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'"
+  },
 
-  "permissions": ["https://*/*", "http://*/*", "storage"]
+  "web_accessible_resources": [
+    {
+      "resources": ["/icons/*.png", "/icons/*.svg"],
+      "matches": ["https://*/*", "http://*/*"]
+    }
+  ],
+
+  "permissions": ["storage"],
+
+  "host_permissions": ["https://*/*", "http://*/*"]
 }
